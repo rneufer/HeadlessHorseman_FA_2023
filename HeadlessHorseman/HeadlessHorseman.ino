@@ -1,6 +1,8 @@
 #include <Servo.h>
 
-Servo myServo;  // create a servo variable
+Servo horseservo;
+Servo pumpservo;
+  // create a servo variable
 
 //setup horseman man
 const int buttonAPin = 2;
@@ -9,16 +11,18 @@ int lastButtonAState = 0;
 bool A = false;
 
 //setup pumpkin head
-const inst buttonBPin = 3;
+const int buttonBPin = 4;
 int buttonBState = 0;
 int lastButtonBState = 0;
 bool B = false;
 
 void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9
-  pinMode(buttonAPin, INPUT)
-  pinMode(buttonBPin, INPUT)
-  Serial.begin(9600)
+  horseservo.attach(9);  // attaches the horseman  on pin 9
+  pumpservo.attach(10);
+  pinMode(buttonAPin, INPUT);
+  pinMode(buttonBPin, INPUT);
+  horseservo.write(0);
+  pumpservo.write(0);
 }
 
 void loop() {
@@ -29,7 +33,7 @@ void loop() {
   if (buttonAState != lastButtonAState) {
     if (buttonAState == HIGH) {
       A = true;
-      myservo.write(180); // tells the servo what angle to turn 180
+      horseservo.write(180); // tells the servo what angle to turn 180
     }  
   }
 
@@ -45,7 +49,7 @@ void loop() {
 
   // Trigger pumpkin man
   if (B == true)  {
-    myservo.write(90);
+    pumpservo.write(90);
 }
 
   lastButtonAState = buttonAState;
