@@ -32,7 +32,8 @@ void loop() {
       myservo.write(180); // tells the servo what angle to turn 180
     }  
   }
-   
+
+  // If horseman is triggered, read for pumpkin head trigger 
   if (A == true) {
     buttonBState = digitalRead(buttonBPin);
     if (buttonBState != lastButtonBState) {
@@ -42,6 +43,7 @@ void loop() {
     }
   }
 
+  // Trigger pumpkin man
   if (B == true)  {
     myservo.write(90);
 }
