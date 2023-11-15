@@ -16,6 +16,9 @@ int buttonBState = 0;
 int lastButtonBState = 0;
 bool B = false;
 
+//slow down pumpkin man
+int pos = 0;    // variable to store the servo position
+
 void setup() {
   horseservo.attach(9);  // attaches the horseman  on pin 9
   pumpservo.attach(10);
@@ -49,8 +52,15 @@ void loop() {
 
   // Trigger pumpkin man
   if (B == true)  {
-    pumpservo.write(90);
-}
+    while (pos <=90) {
+    for (pos = 0; pos <= 90; pos += 1) { // goes from 0 degrees to 90 degrees in steps of 1 degree
+      pumpservo.write(pos);              // tell servo to go to position in variable 'pos'
+      delay(15);                       // waits 15 ms for the servo to reach the position
+    }
+    }
+
+
+  }
 
   lastButtonAState = buttonAState;
   lastButtonBState = buttonBState;
